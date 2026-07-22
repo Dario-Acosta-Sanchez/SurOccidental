@@ -83,7 +83,7 @@
             justify-content: center;
             text-align: center;
             padding: 2rem 5%;
-            background-image: linear-gradient(rgba(17, 17, 17, 0.8), rgba(17, 17, 17, 0.8)), url('imagenes/hero_bg_1777908211576.png');
+            background-image: linear-gradient(rgba(17, 17, 17, 0.8), rgba(17, 17, 17, 0.8)), url('imagenes/hero.png');
             background-size: cover;
             background-position: center;
         }
@@ -165,6 +165,35 @@
             font-weight: bold;
             margin-top: 1rem;
             align-self: flex-start;
+        }
+
+        /* 3.4 Galería */
+        #galeria {
+            padding: 5rem 5%;
+            background-color: #1a1a1a;
+        }
+
+        .grid-galeria {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .grid-galeria img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            display: block;
+            filter: grayscale(15%);
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .grid-galeria img:hover {
+            transform: scale(1.03);
+            filter: grayscale(0%);
         }
 
         /* 3.5 Horarios */
@@ -319,6 +348,10 @@
             .grid-horarios {
                 grid-template-columns: repeat(2, 1fr);
             }
+
+            .grid-galeria {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
 
         @media (min-width: 1024px) {
@@ -328,6 +361,10 @@
 
             .grid-contacto {
                 grid-template-columns: 1fr 1fr;
+            }
+
+            .grid-galeria {
+                grid-template-columns: repeat(4, 1fr);
             }
         }
     </style>
@@ -340,6 +377,7 @@
         <nav>
             <ul id="menu">
                 <li><a href="#instalaciones">Instalaciones</a></li>
+                <li><a href="#galeria">Galería</a></li>
                 <li><a href="#horarios">Horarios</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
@@ -357,7 +395,7 @@
             <h2 class="section-title">Nuestras Salas</h2>
             <div class="grid-instalaciones">
                 <article class="card">
-                    <img src="imagenes/sala_tatami_1777908225657.png" alt="Sala de Artes Marciales" loading="lazy">
+                    <img src="imagenes/sala_tatami.png" alt="Entrenamiento con armas tradicionales de Kung Fu" loading="lazy">
                     <div class="card-content">
                         <h3>El Tatami</h3>
                         <p>Clases especializadas en artes marciales chinas: Kung Fu, San Da y Tai Chi. Disciplina y técnica guiada por maestros.</p>
@@ -365,7 +403,7 @@
                 </article>
 
                 <article class="card">
-                    <img src="imagenes/sala_musculacion_1777908240904.png" alt="Sala de Musculación" loading="lazy">
+                    <img src="imagenes/sala_musculacion.png" alt="Clase de circuito y musculación" loading="lazy">
                     <div class="card-content">
                         <h3>Sala de Musculación</h3>
                         <p>Maquinaria de última generación y peso libre para tu acondicionamiento físico.</p>
@@ -374,7 +412,7 @@
                 </article>
 
                 <article class="card">
-                    <img src="imagenes/sala_pilates_1777908255281.png" alt="Máquinas de Pilates" loading="lazy">
+                    <img src="imagenes/sala_pilates.png" alt="Máquinas de Pilates" loading="lazy">
                     <div class="card-content">
                         <h3>Pilates Especial</h3>
                         <p>Equipamiento específico y máquinas de Pilates para un trabajo profundo de core, flexibilidad y corrección postural.</p>
@@ -382,12 +420,26 @@
                 </article>
 
                 <article class="card">
-                    <img src="imagenes/sala_yoga_1777908269737.png" alt="Sala de Yoga Aéreo" loading="lazy">
+                    <img src="imagenes/sala_yoga.png" alt="Sesión de Yoga Aéreo" loading="lazy">
                     <div class="card-content">
                         <h3>Yoga y Baile</h3>
                         <p>Espacio diáfano y relajante diseñado para clases de Yoga, Yoga Aéreo y Baile. Desconecta de la rutina y mejora tu movilidad.</p>
                     </div>
                 </article>
+            </div>
+        </section>
+
+        <!-- 3.4 Galería -->
+        <section id="galeria">
+            <h2 class="section-title">Momentos en Suroccidental</h2>
+            <div class="grid-galeria">
+                <img src="imagenes/galeria_sanda_1.png" alt="Entrenamiento de San Da en el gimnasio" loading="lazy">
+                <img src="imagenes/galeria_sanda_2.png" alt="Competición de Wushu San Da" loading="lazy">
+                <img src="imagenes/galeria_sanda_3.png" alt="Alumna preparándose para un combate" loading="lazy">
+                <img src="imagenes/galeria_sanda_4.png" alt="Competidor de San Da tras el combate" loading="lazy">
+                <img src="imagenes/galeria_pilates_grupo.png" alt="Clase grupal en el estudio" loading="lazy">
+                <img src="imagenes/galeria_dragones.png" alt="Cabezas de danza del león, tradición china" loading="lazy">
+                <img src="imagenes/galeria_tienda.png" alt="Tienda del centro" loading="lazy">
             </div>
         </section>
 
