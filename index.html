@@ -139,6 +139,28 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .card:hover,
+        .card:focus-visible {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+            outline: none;
+        }
+
+        .card:focus-visible {
+            outline: 2px solid var(--accent-orange);
+            outline-offset: 2px;
+        }
+
+        .ver-mas {
+            display: inline-block;
+            margin-top: 0.8rem;
+            color: var(--accent-orange);
+            font-size: 0.85rem;
+            font-weight: 600;
         }
 
         .card img {
@@ -338,6 +360,75 @@
             font-size: 0.9rem;
         }
 
+        /* Modal de sala */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 10, 10, 0.92);
+            z-index: 2000;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 6vh 5%;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal-box {
+            background-color: #1a1a1a;
+            border: 2px solid var(--accent-orange);
+            border-radius: 0.75rem;
+            max-width: 820px;
+            width: 100%;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent-orange);
+            color: var(--text-white);
+            border: none;
+            width: 2.2rem;
+            height: 2.2rem;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        .modal-box h3 {
+            color: var(--accent-orange);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            padding-right: 2.5rem;
+        }
+
+        .modal-box p {
+            color: var(--text-gray);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+        }
+
+        .modal-gallery img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 0.4rem;
+            display: block;
+        }
+
         /* Responsive Media Queries */
         @media (min-width: 768px) {
             header {
@@ -362,6 +453,10 @@
             }
 
             .grid-galeria {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .modal-gallery {
                 grid-template-columns: repeat(3, 1fr);
             }
         }
@@ -407,36 +502,40 @@
         <section id="instalaciones">
             <h2 class="section-title">Nuestras Salas</h2>
             <div class="grid-instalaciones">
-                <article class="card">
+                <article class="card" data-sala="tatami" tabindex="0" role="button" aria-haspopup="dialog">
                     <img src="imagenes/sala_tatami.png" alt="Entrenamiento con armas tradicionales de Kung Fu" loading="lazy">
                     <div class="card-content">
                         <h3>El Tatami</h3>
                         <p>Clases especializadas en artes marciales chinas: Kung Fu, San Da y Tai Chi. Disciplina y técnica guiada por maestros.</p>
+                        <span class="ver-mas">Ver fotos y detalles →</span>
                     </div>
                 </article>
 
-                <article class="card">
+                <article class="card" data-sala="musculacion" tabindex="0" role="button" aria-haspopup="dialog">
                     <img src="imagenes/sala_musculacion.png" alt="Clase de circuito y musculación" loading="lazy">
                     <div class="card-content">
                         <h3>Sala de Musculación</h3>
                         <p>Maquinaria de última generación y peso libre para tu acondicionamiento físico.</p>
                         <span class="badge">Monitores Gratuitos</span>
+                        <span class="ver-mas">Ver fotos y detalles →</span>
                     </div>
                 </article>
 
-                <article class="card">
+                <article class="card" data-sala="pilates" tabindex="0" role="button" aria-haspopup="dialog">
                     <img src="imagenes/sala_pilates.png" alt="Máquinas de Pilates" loading="lazy">
                     <div class="card-content">
                         <h3>Pilates Especial</h3>
                         <p>Equipamiento específico y máquinas de Pilates para un trabajo profundo de core, flexibilidad y corrección postural.</p>
+                        <span class="ver-mas">Ver fotos y detalles →</span>
                     </div>
                 </article>
 
-                <article class="card">
+                <article class="card" data-sala="yoga" tabindex="0" role="button" aria-haspopup="dialog">
                     <img src="imagenes/sala_yoga.png" alt="Sesión de Yoga Aéreo" loading="lazy">
                     <div class="card-content">
                         <h3>Yoga y Baile</h3>
                         <p>Espacio diáfano y relajante diseñado para clases de Yoga, Yoga Aéreo y Baile. Desconecta de la rutina y mejora tu movilidad.</p>
+                        <span class="ver-mas">Ver fotos y detalles →</span>
                     </div>
                 </article>
             </div>
@@ -450,7 +549,7 @@
                 <img src="imagenes/galeria_sanda_2.png" alt="Competición de Wushu San Da" loading="lazy">
                 <img src="imagenes/galeria_sanda_3.png" alt="Alumna preparándose para un combate" loading="lazy">
                 <img src="imagenes/galeria_sanda_4.png" alt="Competidor de San Da tras el combate" loading="lazy">
-                <img src="imagenes/galeria_pilates_grupo.png" alt="Clase grupal en el estudio" loading="lazy">
+                <img src="imagenes/galeria_yoga_grupo.png" alt="Clase grupal en el estudio" loading="lazy">
                 <img src="imagenes/galeria_dragones.png" alt="Cabezas de danza del león, tradición china" loading="lazy">
                 <a href="https://sursport.es/" target="_blank" rel="noopener" title="Visita nuestra tienda online">
                     <img src="imagenes/galeria_tienda.png" alt="Tienda de artes marciales chinas Sursport" loading="lazy">
@@ -542,6 +641,16 @@
         <p>&copy; 2026 Centro Deportivo Suroccidental. Infraestructura digital por PuntoZero.</p>
     </footer>
 
+    <!-- Modal de detalle de sala -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <button class="modal-close" id="modalClose" aria-label="Cerrar">✕</button>
+            <h3 id="modalTitle"></h3>
+            <p id="modalText"></p>
+            <div class="modal-gallery" id="modalGallery"></div>
+        </div>
+    </div>
+
     <!-- 5. Script de Smooth Scroll -->
     <script>
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -549,6 +658,86 @@
                 e.preventDefault();
                 document.querySelector(this.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
             });
+        });
+    </script>
+
+    <!-- 6. Modal de salas: fotos y detalle de cada disciplina -->
+    <script>
+        const SALAS = {
+            tatami: {
+                title: 'El Tatami',
+                text: 'Aquí entrenamos las artes marciales chinas: Kung Fu tradicional (formas a mano vacía y con armas como espada o bastón), San Da —el boxeo chino de contacto pleno, con puños, patadas, derribos y proyecciones— y Tai Chi. Nuestros alumnos compiten en campeonatos de Wushu y participan en exhibiciones culturales, como la danza del león.',
+                images: [
+                    { src: 'imagenes/sala_tatami.png', alt: 'Entrenamiento con armas tradicionales de Kung Fu' },
+                    { src: 'imagenes/galeria_sanda_1.png', alt: 'Entrenamiento de San Da en el gimnasio' },
+                    { src: 'imagenes/galeria_sanda_2.png', alt: 'Competición de Wushu San Da' },
+                    { src: 'imagenes/galeria_sanda_3.png', alt: 'Alumna preparándose para un combate' },
+                    { src: 'imagenes/galeria_sanda_4.png', alt: 'Competidor de San Da tras el combate' },
+                    { src: 'imagenes/galeria_dragones.png', alt: 'Cabezas de danza del león, tradición china' }
+                ]
+            },
+            musculacion: {
+                title: 'Sala de Musculación',
+                text: 'Maquinaria de última generación, peso libre y zona de circuito funcional. Clases dirigidas por monitores —gratuitas para todos los socios— para acompañarte en tu entrenamiento sea cual sea tu nivel.',
+                images: [
+                    { src: 'imagenes/sala_musculacion.png', alt: 'Clase de circuito y musculación' }
+                ]
+            },
+            pilates: {
+                title: 'Pilates Especial',
+                text: 'Estudio equipado con máquinas reformer profesionales para un trabajo profundo de core, flexibilidad y corrección postural. Sesiones en grupos reducidos guiadas por profesoras especializadas.',
+                images: [
+                    { src: 'imagenes/sala_pilates.png', alt: 'Sala de máquinas de Pilates' }
+                ]
+            },
+            yoga: {
+                title: 'Yoga y Baile',
+                text: 'Espacio diáfano pensado para Yoga, Yoga Aéreo (con hamacas suspendidas) y Baile. Un lugar para desconectar de la rutina, ganar movilidad y trabajar el cuerpo de forma consciente.',
+                images: [
+                    { src: 'imagenes/sala_yoga.png', alt: 'Sesión de Yoga Aéreo' },
+                    { src: 'imagenes/galeria_yoga_grupo.png', alt: 'Clase grupal en el estudio de Yoga' }
+                ]
+            }
+        };
+
+        const modalOverlay = document.getElementById('modalOverlay');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalText = document.getElementById('modalText');
+        const modalGallery = document.getElementById('modalGallery');
+
+        function abrirSala(key) {
+            const sala = SALAS[key];
+            if (!sala) return;
+            modalTitle.textContent = sala.title;
+            modalText.textContent = sala.text;
+            modalGallery.innerHTML = sala.images
+                .map(img => `<img src="${img.src}" alt="${img.alt}" loading="lazy">`)
+                .join('');
+            modalOverlay.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function cerrarSala() {
+            modalOverlay.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('.card[data-sala]').forEach(card => {
+            card.addEventListener('click', () => abrirSala(card.dataset.sala));
+            card.addEventListener('keydown', e => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    abrirSala(card.dataset.sala);
+                }
+            });
+        });
+
+        document.getElementById('modalClose').addEventListener('click', cerrarSala);
+        modalOverlay.addEventListener('click', e => {
+            if (e.target.id === 'modalOverlay') cerrarSala();
+        });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') cerrarSala();
         });
     </script>
 </body>
